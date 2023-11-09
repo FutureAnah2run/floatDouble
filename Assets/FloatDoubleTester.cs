@@ -113,22 +113,16 @@ public class FloatDoubleTester : MonoBehaviour
 
     public double AddMulTwoFloatFloat()
     {
-        float result = 0f;
-        for (int i = 0; i < _totalCount; i++)
-        {
-            result += _floatList_A[i] * _floatList_B[i];
-        }
-        return Convert.ToDouble(result);
+        double result = _floatList_A[0];
+        result *= _floatList_B[0];
+        return result;
     }
 
     // mac°ú ´Ù¸§
     public double AddMulTwoFloatDouble()
     {
         double result = 0d;
-        for (int i = 0; i < _totalCount; i++)
-        {
-            result += (double)_floatList_A[i] * _floatList_B[i];
-        }
+        result = _floatList_A[0] * _floatList_B[0];
         return result;
     }
 
@@ -154,25 +148,15 @@ public class FloatDoubleTester : MonoBehaviour
 
     public double AddAndDivFloatDouble()
     {
-        float result = 0f;
-        for (int i = 0; i < _totalCount; i++)
-        {
-            result *= _floatList_B[i];
-            result += _floatList_A[i];
-            result /= _floatList_B[i];
-        }
-        return Convert.ToDouble(result);
+        double result = _floatList_A[0];
+        result /= _floatList_B[0];
+        return result;
     }
 
     public double AddAndDivFloatFloat()
     {
         double result = 0d;
-        for (int i = 0; i < _totalCount; i++)
-        {
-            result *= _floatList_B[i];
-            result += _floatList_A[i];
-            result /= _floatList_B[i];
-        }
+        result = _floatList_A[0] / _floatList_B[0];
         return result;
     }
 }
