@@ -127,7 +127,7 @@ public class FloatDoubleTester : MonoBehaviour
         double result = 0d;
         for (int i = 0; i < _totalCount; i++)
         {
-            result += _floatList_A[i] * _floatList_B[i];
+            result += (double)_floatList_A[i] * _floatList_B[i];
         }
         return result;
     }
