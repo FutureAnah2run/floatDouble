@@ -16,7 +16,7 @@ public class FloatDoubleTester : MonoBehaviour
     {
         public float result_imp_f;
         public float result_cvrt_f;
-        public double result_d;        
+        public double result_d;
     }
 
     public sResult[] _result_Win;
@@ -37,7 +37,7 @@ public class FloatDoubleTester : MonoBehaviour
     public void InitFloatList(ref float[] floats)
     {
         floats = new float[_totalCount];
-        for(int i = 0; i < _totalCount; i++)
+        for (int i = 0; i < _totalCount; i++)
         {
             floats[i] = UnityEngine.Random.Range(0f, 10f);
         }
@@ -79,9 +79,9 @@ public class FloatDoubleTester : MonoBehaviour
     [ContextMenu("CheckResult")]
     public void CheckResult()
     {
-        for (int i = 0; i < _caseCount; i+=2)
+        for (int i = 0; i < _caseCount; i += 2)
         {
-            Debug.Assert(_result_Win[i].result_d == _result_Win[i+1].result_d, $"{i:000}: result_d is different.");
+            Debug.Assert(_result_Win[i].result_d == _result_Win[i + 1].result_d, $"{i:000}: result_d is different.");
         }
     }
 
@@ -100,9 +100,10 @@ public class FloatDoubleTester : MonoBehaviour
     {
         float result = 0f;
         result = _floatList_A[0] + _floatList_B[0];
-        return result;
+        return Convert.ToDouble(result);
     }
 
+    // mac의 경우 float간의 결과가 일치하였음.
     public double AddTwoFloatDouble()
     {
         double result = 0d;
@@ -113,13 +114,14 @@ public class FloatDoubleTester : MonoBehaviour
     public double AddMulTwoFloatFloat()
     {
         float result = 0f;
-        for(int i = 0; i < _totalCount; i++)
+        for (int i = 0; i < _totalCount; i++)
         {
             result += _floatList_A[i] * _floatList_B[i];
         }
-        return result;
+        return Convert.ToDouble(result);
     }
 
+    //
     public double AddMulTwoFloatDouble()
     {
         double result = 0d;
@@ -137,7 +139,7 @@ public class FloatDoubleTester : MonoBehaviour
         {
             result += _floatList_A[i];
         }
-        return result;
+        return Convert.ToDouble(result);
     }
 
     public double AddWholeFloatDouble()
@@ -159,8 +161,9 @@ public class FloatDoubleTester : MonoBehaviour
             result += _floatList_A[i];
             result /= _floatList_B[i];
         }
-        return result;
+        return Convert.ToDouble(result);
     }
+
     public double AddAndDivFloatFloat()
     {
         double result = 0d;
