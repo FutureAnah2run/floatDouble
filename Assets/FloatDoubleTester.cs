@@ -148,8 +148,8 @@ public class FloatDoubleTester : MonoBehaviour
 
     public double AddAndDivFloatDouble()
     {
-        double result = _floatList_A[0];
-        result /= _floatList_B[0];
+        double result = 0d;
+        result = (double)_floatList_A[0] / _floatList_B[0];
         return result;
     }
 
