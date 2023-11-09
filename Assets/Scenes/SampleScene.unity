@@ -438,7 +438,31 @@ MonoBehaviour:
   - 9.599999
   - 7.4227643
   - 8.281251
-  _result_Win: []
+  _result_Win:
+  - result_imp_f: 10.042142
+    result_cvrt_f: 10.042142
+    result_d: 10.042141914367676
+  - result_imp_f: 10.042142
+    result_cvrt_f: 10.042142
+    result_d: 10.042141675949097
+  - result_imp_f: 2612.5503
+    result_cvrt_f: 2612.5503
+    result_d: 2612.55029296875
+  - result_imp_f: 2612.5503
+    result_cvrt_f: 2612.5503
+    result_d: 2612.550209230274
+  - result_imp_f: 517.0774
+    result_cvrt_f: 517.0774
+    result_d: 517.077392578125
+  - result_imp_f: 517.0773
+    result_cvrt_f: 517.0773
+    result_d: 517.0772929191589
+  - result_imp_f: 403.87598
+    result_cvrt_f: 403.87598
+    result_d: 403.87596336335434
+  - result_imp_f: 403.87598
+    result_cvrt_f: 403.87598
+    result_d: 403.8759765625
   _result_Mac: []
 --- !u!4 &1121254054
 Transform:

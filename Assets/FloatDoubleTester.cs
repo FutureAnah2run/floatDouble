@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class FloatDoubleTester : MonoBehaviour
@@ -71,6 +72,7 @@ public class FloatDoubleTester : MonoBehaviour
             results[i].result_imp_f = (float)result;
             Debug.Assert(_result_Win[i].result_cvrt_f == _result_Win[i].result_imp_f, "convert result is different with implicit double");
         }
+        EditorUtility.SetDirty(this);
     }
 
 
