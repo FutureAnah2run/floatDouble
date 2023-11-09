@@ -106,8 +106,8 @@ public class FloatDoubleTester : MonoBehaviour
     // mac의 경우 float간의 결과가 일치하였음.
     public double AddTwoFloatDouble()
     {
-        double result = 0d;
-        result = _floatList_A[0] + _floatList_B[0];
+        double result = _floatList_A[0];
+        result += _floatList_B[0];
         return result;
     }
 
@@ -121,7 +121,7 @@ public class FloatDoubleTester : MonoBehaviour
         return Convert.ToDouble(result);
     }
 
-    //
+    // mac과 다름
     public double AddMulTwoFloatDouble()
     {
         double result = 0d;
