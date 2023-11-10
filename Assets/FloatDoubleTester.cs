@@ -15,19 +15,19 @@ public class FloatDoubleTester : MonoBehaviour
     public struct sResult
     {
         public float result_imp_f;
-        public float result_cvrt_f;
-        public double result_d;
+        public float result_exp_f;
+        public double result_imp_d;
+        public double result_exp_d;
     }
 
     public sResult[] _result_Win;
     public sResult[] _result_Mac;
 
-    private const int _totalCount = 100;
-    private int _caseCount => _operations.Length;
+    private const int _totalCount = 10000;
 
-    public delegate double operationDelegate();
-    private operationDelegate[] _operations;
-
+#if UNITY_EDITOR_WIN 
+    [ContextMenu("CreateResult")]
+#endif
     public void CreateCases()
     {
         InitFloatList(ref _floatList_A);
@@ -46,117 +46,52 @@ public class FloatDoubleTester : MonoBehaviour
     [ContextMenu("GetResult")]
     public void GetResult()
     {
-        _operations = new operationDelegate[]
-        {
-            AddTwoFloatFloat,
-            AddTwoFloatDouble,
-            AddMulTwoFloatFloat,
-            AddMulTwoFloatDouble,
-            AddWholeFloatFloat,
-            AddWholeFloatDouble,
-            AddAndDivFloatFloat,
-            AddAndDivFloatDouble
-        };
         ref sResult[] results =
 #if UNITY_EDITOR_WIN
         ref _result_Win;
 #else
         ref _result_Mac;
 #endif
-        results = new sResult[_caseCount];
-        for (int i = 0; i < _caseCount; i++)
+        results = new sResult[_totalCount];
+        for (int i = 0; i < _totalCount; i++)
         {
-            double result = _operations[i]();
-            results[i].result_d = result;
-            results[i].result_cvrt_f = Convert.ToSingle(result);
-            results[i].result_imp_f = (float)result;
-            Debug.Assert(_result_Win[i].result_cvrt_f == _result_Win[i].result_imp_f, "convert result is different with implicit double");
+            results[i].result_imp_d = _floatList_A[i] * _floatList_B[i];
+            results[i].result_imp_f = _floatList_A[i] * _floatList_B[i];
+            results[i].result_exp_d = (double)_floatList_A[i] * (double)_floatList_B[i];
+            results[i].result_exp_f = (float)((double)_floatList_A[i] * (double)_floatList_B[i]);
         }
         EditorUtility.SetDirty(this);
     }
 
 
-    [ContextMenu("CheckResult")]
-    public void CheckResult()
+    [ContextMenu("CheckResultLocal")]
+    public void CheckResultLocal()
     {
-        for (int i = 0; i < _caseCount; i += 2)
+        for (int i = 0; i < _totalCount; ++i)
         {
-            Debug.Assert(_result_Win[i].result_d == _result_Win[i + 1].result_d, $"{i:000}: result_d is different.");
+#if UNITY_EDITOR_WIN
+            Debug.Assert(_result_Win[i].result_imp_d == _result_Win[i].result_exp_d, $"{i:000}: result_d is different.");
+            Debug.Assert(_result_Win[i].result_imp_f == _result_Win[i].result_exp_f, $"{i:000}: result_f is different.");
+#else
+            Debug.Assert(_result_Mac[i].result_imp_d == _result_Mac[i].result_exp_d, $"{i:000}: result_d is different.");
+            Debug.Assert(_result_Mac[i].result_imp_f == _result_Mac[i].result_exp_f, $"{i:000}: result_f is different.");
+#endif
         }
     }
 
-    [ContextMenu("CheckResult2")]
-    public void CheckResult2()
+    [ContextMenu("CheckResultGlobal")]
+    public void CheckResultGlobal()
     {
-        for (int i = 0; i < _caseCount; i++)
+        if(_result_Mac.Length != _result_Win.Length)
         {
-            Debug.Assert(_result_Win[i].result_d == _result_Mac[i].result_d, $"{i:000}: result_d is different.");
-            Debug.Assert(_result_Win[i].result_cvrt_f == _result_Mac[i].result_cvrt_f, $"{i:000}: result_cvrt_f is different.");
+            return;
+        }
+        for (int i = 0; i < _totalCount; ++i)
+        {
+            Debug.Assert(_result_Win[i].result_imp_d == _result_Mac[i].result_imp_d, $"{i:000}: result_imp_d is different.");
             Debug.Assert(_result_Win[i].result_imp_f == _result_Mac[i].result_imp_f, $"{i:000}: result_imp_f is different.");
+            Debug.Assert(_result_Win[i].result_exp_f == _result_Mac[i].result_exp_f, $"{i:000}: result_exp_f is different.");
+            Debug.Assert(_result_Win[i].result_exp_f == _result_Mac[i].result_exp_f, $"{i:000}: result_exp_f is different.");
         }
-    }
-
-    public double AddTwoFloatFloat()
-    {
-        float result = 0f;
-        result = _floatList_A[0] + _floatList_B[0];
-        return Convert.ToDouble(result);
-    }
-
-    // mac의 경우 float간의 결과가 일치하였음.
-    public double AddTwoFloatDouble()
-    {
-        double result = _floatList_A[0];
-        result += _floatList_B[0];
-        return result;
-    }
-
-    public double AddMulTwoFloatFloat()
-    {
-        double result = _floatList_A[0];
-        result *= _floatList_B[0];
-        return result;
-    }
-
-    // mac과 다름
-    public double AddMulTwoFloatDouble()
-    {
-        double result = 0d;
-        result = _floatList_A[0] * _floatList_B[0];
-        return result;
-    }
-
-    public double AddWholeFloatFloat()
-    {
-        float result = 0f;
-        for (int i = 0; i < _totalCount; i++)
-        {
-            result += _floatList_A[i];
-        }
-        return Convert.ToDouble(result);
-    }
-
-    public double AddWholeFloatDouble()
-    {
-        double result = 0d;
-        for (int i = 0; i < _totalCount; i++)
-        {
-            result += _floatList_A[i];
-        }
-        return result;
-    }
-
-    public double AddAndDivFloatDouble()
-    {
-        double result = 0d;
-        result = (double)_floatList_A[0] / _floatList_B[0];
-        return result;
-    }
-
-    public double AddAndDivFloatFloat()
-    {
-        double result = 0d;
-        result = _floatList_A[0] / _floatList_B[0];
-        return result;
     }
 }
