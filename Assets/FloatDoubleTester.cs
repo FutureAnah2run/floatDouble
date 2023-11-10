@@ -100,34 +100,31 @@ public class FloatDoubleTester : MonoBehaviour
     public float FloatOperation(float a, float b)
     {
         float result = 0f;
-        for (int i = 0; i < iterCount; ++i)
+        for(int i = 0; i<iterCount; ++i)
         {
-            float temp = a + b;
-            result += temp;
+            result /= a + b;
         }
         return result;
     }
 
     public float FloatPreciseOperation(float a, float b)
     {
-        double result = 0d;
+        float result = 0f;
         for (int i = 0; i < iterCount; ++i)
         {
-            double temp = (double)a * (double)b;
-            result += temp;
+            result = (float)(result / (a + b));
         }
-        return (float)result;
+        return result;
     }
 
     public double DoubleOperation(float a, float b) 
     {
-        float result = 0f;
+        double result = 0d;
         for (int i = 0; i < iterCount; ++i)
         {
-            float temp = a + b;
-            result += temp;
+            result /= (double)a + (double)b;
         }
-        return (double)result;
+        return result;
     }
 
     public double DoublePreciseOperation(float a, float b)
@@ -135,8 +132,7 @@ public class FloatDoubleTester : MonoBehaviour
         double result = 0d;
         for (int i = 0; i < iterCount; ++i)
         {
-            double temp = (double)a * (double)b;
-            result += temp;
+            result = result / ((double)a + (double)b);
         }
         return result;
     }
