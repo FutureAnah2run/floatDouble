@@ -112,7 +112,7 @@ public class FloatDoubleTester : MonoBehaviour
         float result = 0f;
         for (int i = 0; i < iterCount; ++i)
         {
-            result = result + (a + b + b);
+            result = result + (float)((double)a + b + b);
         }
         return result;
     }
