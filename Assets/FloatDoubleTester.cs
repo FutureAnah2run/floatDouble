@@ -102,7 +102,7 @@ public class FloatDoubleTester : MonoBehaviour
         float result = 0f;
         for(int i = 0; i<iterCount; ++i)
         {
-            result = result + (float)(a / b);
+            result = result + (float)(a * b);
         }
         return result;
     }
@@ -112,7 +112,7 @@ public class FloatDoubleTester : MonoBehaviour
         float result = 0f;
         for (int i = 0; i < iterCount; ++i)
         {
-            result = result + (float)((double)a / b);
+            result = result + (float)((double)a * b);
         }
         return result;
     }
@@ -122,7 +122,7 @@ public class FloatDoubleTester : MonoBehaviour
         double result = 0d;
         for (int i = 0; i < iterCount; ++i)
         {
-            result += (double)a / (double)b;
+            result += (double)a * (double)b;
         }
         return result;
     }
@@ -132,7 +132,7 @@ public class FloatDoubleTester : MonoBehaviour
         double result = 0d;
         for (int i = 0; i < iterCount; ++i)
         {
-            result = result + ((double)a / (double)b);
+            result = result + ((double)a * (double)b);
         }
         return result;
     }
