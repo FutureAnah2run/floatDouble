@@ -55,10 +55,10 @@ public class FloatDoubleTester : MonoBehaviour
         results = new sResult[_totalCount];
         for (int i = 0; i < _totalCount; i++)
         {
-            results[i].result_imp_d = _floatList_A[i] * _floatList_B[i];
-            results[i].result_imp_f = _floatList_A[i] * _floatList_B[i];
-            results[i].result_exp_d = (double)_floatList_A[i] * (double)_floatList_B[i];
-            results[i].result_exp_f = (float)((double)_floatList_A[i] * (double)_floatList_B[i]);
+            results[i].result_imp_f = FloatOperation(_floatList_A[i], _floatList_B[i]);
+            results[i].result_exp_f = FloatPreciseOperation(_floatList_A[i], _floatList_B[i]);
+            results[i].result_imp_d = DoubleOperation(_floatList_A[i], _floatList_B[i]);
+            results[i].result_exp_d = DoublePreciseOperation(_floatList_A[i], _floatList_B[i]);
         }
         EditorUtility.SetDirty(this);
     }
@@ -93,5 +93,47 @@ public class FloatDoubleTester : MonoBehaviour
             Debug.Assert(_result_Win[i].result_exp_f == _result_Mac[i].result_exp_f, $"{i:000}: result_exp_f is different.");
             Debug.Assert(_result_Win[i].result_exp_f == _result_Mac[i].result_exp_f, $"{i:000}: result_exp_f is different.");
         }
+    }
+
+    const int iterCount = 1000;
+
+    public float FloatOperation(float a, float b)
+    {
+        float result = 0f;
+        for(int i = 0; i<iterCount; ++i)
+        {
+            result += a * b;
+        }
+        return result;
+    }
+
+    public float FloatPreciseOperation(float a, float b)
+    {
+        float result = 0f;
+        for (int i = 0; i < iterCount; ++i)
+        {
+            result += (float)((double)a * (double)b);
+        }
+        return result;
+    }
+
+    public double DoubleOperation(float a, float b) 
+    {
+        double result = 0d;
+        for (int i = 0; i < iterCount; ++i)
+        {
+            result += a * b;
+        }
+        return result;
+    }
+
+    public double DoublePreciseOperation(float a, float b)
+    {
+        double result = 0d;
+        for (int i = 0; i < iterCount; ++i)
+        {
+            result += (double)a * (double)b;
+        }
+        return result;
     }
 }
