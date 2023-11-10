@@ -95,36 +95,39 @@ public class FloatDoubleTester : MonoBehaviour
         }
     }
 
-    const int iterCount = 1000;
+    const int iterCount = 10000;
 
     public float FloatOperation(float a, float b)
     {
         float result = 0f;
-        for(int i = 0; i<iterCount; ++i)
+        for (int i = 0; i < iterCount; ++i)
         {
-            result += a * b;
+            float temp = a + b;
+            result += temp;
         }
         return result;
     }
 
     public float FloatPreciseOperation(float a, float b)
     {
-        float result = 0f;
+        double result = 0d;
         for (int i = 0; i < iterCount; ++i)
         {
-            result += (float)((double)a * (double)b);
+            double temp = (double)a * (double)b;
+            result += temp;
         }
-        return result;
+        return (float)result;
     }
 
     public double DoubleOperation(float a, float b) 
     {
-        double result = 0d;
+        float result = 0f;
         for (int i = 0; i < iterCount; ++i)
         {
-            result += a * b;
+            float temp = a + b;
+            result += temp;
         }
-        return result;
+        return (double)result;
     }
 
     public double DoublePreciseOperation(float a, float b)
@@ -132,7 +135,8 @@ public class FloatDoubleTester : MonoBehaviour
         double result = 0d;
         for (int i = 0; i < iterCount; ++i)
         {
-            result += (double)a * (double)b;
+            double temp = (double)a * (double)b;
+            result += temp;
         }
         return result;
     }
