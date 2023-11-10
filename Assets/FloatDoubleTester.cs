@@ -100,20 +100,14 @@ public class FloatDoubleTester : MonoBehaviour
     public float FloatOperation(float a, float b)
     {
         float result = 0f;
-        for(int i = 0; i<iterCount; ++i)
-        {
-            result = result + (float)(a + b + b);
-        }
+        result = (b- a) / b;
         return result;
     }
 
     public float FloatPreciseOperation(float a, float b)
     {
         float result = 0f;
-        for (int i = 0; i < iterCount; ++i)
-        {
-            result = result + (float)((double)a + b + b);
-        }
+        result = (float)(((double)b - (double)a) / b);
         return result;
     }
 
