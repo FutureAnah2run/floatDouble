@@ -90,7 +90,7 @@ public class FloatDoubleTester : MonoBehaviour
         {
             Debug.Assert(_result_Win[i].result_imp_d == _result_Mac[i].result_imp_d, $"{i:000}: result_imp_d is different.");
             Debug.Assert(_result_Win[i].result_imp_f == _result_Mac[i].result_imp_f, $"{i:000}: result_imp_f is different.");
-            Debug.Assert(_result_Win[i].result_exp_f == _result_Mac[i].result_exp_f, $"{i:000}: result_exp_f is different.");
+            Debug.Assert(_result_Win[i].result_exp_d == _result_Mac[i].result_exp_d, $"{i:000}: result_exp_d is different.");
             Debug.Assert(_result_Win[i].result_exp_f == _result_Mac[i].result_exp_f, $"{i:000}: result_exp_f is different.");
         }
     }
