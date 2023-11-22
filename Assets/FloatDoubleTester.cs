@@ -107,7 +107,7 @@ public class FloatDoubleTester : MonoBehaviour
     public float FloatPreciseOperation(float a, float b)
     {
         float result = 0f;
-        result = (float)(((double)b - (double)a) / b);
+        result = ((float)((double)b - a) / b);
         return result;
     }
 
