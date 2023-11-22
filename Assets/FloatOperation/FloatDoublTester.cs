@@ -193,9 +193,9 @@ public class FloatDoublTester : MonoBehaviour
 
     public void SetPlatformText()
     {
-        if(platorm)
+        if (platorm)
         {
-            platorm.text = Application.platform.ToString();
+            platorm.text = $"{Application.platform}\nHighRes: {Stopwatch.IsHighResolution}";
         }
     }
 
