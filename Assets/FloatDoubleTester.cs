@@ -60,7 +60,9 @@ public class FloatDoubleTester : MonoBehaviour
             results[i].result_imp_d = DoubleOperation(_floatList_A[i], _floatList_B[i]);
             results[i].result_exp_d = DoublePreciseOperation(_floatList_A[i], _floatList_B[i]);
         }
+#if UNITY_EDITOR
         EditorUtility.SetDirty(this);
+#endif
     }
 
 

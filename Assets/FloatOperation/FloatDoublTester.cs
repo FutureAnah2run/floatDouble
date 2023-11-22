@@ -20,6 +20,8 @@ public class FloatDoublTester : MonoBehaviour
     [SerializeField]
     private Text platorm;
 
+    private double result;
+
     private Stopwatch timer = new Stopwatch();
 
     public double DoubleMultiply()
@@ -33,8 +35,8 @@ public class FloatDoublTester : MonoBehaviour
         {
             tmpd *= tmpd;
         }   
-
         timer.Stop();
+        result = tmpd;
         return timer.Elapsed.TotalSeconds;
     }
 
@@ -51,6 +53,7 @@ public class FloatDoublTester : MonoBehaviour
         }
 
         timer.Stop();
+        result = tmpf;
         return timer.Elapsed.TotalSeconds;
     }
 
@@ -68,6 +71,7 @@ public class FloatDoublTester : MonoBehaviour
         }
 
         timer.Stop();
+        result = tmpd;
         return timer.Elapsed.TotalSeconds;
     }
 
@@ -85,6 +89,7 @@ public class FloatDoublTester : MonoBehaviour
         }
 
         timer.Stop();
+        result = tmpf;
         return timer.Elapsed.TotalSeconds;
     }
 
@@ -102,6 +107,7 @@ public class FloatDoublTester : MonoBehaviour
         }
 
         timer.Stop();
+        result = tmpd;  
         return timer.Elapsed.TotalSeconds;
     }
 
@@ -119,6 +125,7 @@ public class FloatDoublTester : MonoBehaviour
         }
 
         timer.Stop();
+        result = tmpf;
         return timer.Elapsed.TotalSeconds;
     }
 
@@ -136,6 +143,7 @@ public class FloatDoublTester : MonoBehaviour
         }
 
         timer.Stop();
+        result = tmpd;
         return timer.Elapsed.TotalSeconds;
     }
 
@@ -153,6 +161,7 @@ public class FloatDoublTester : MonoBehaviour
         }
 
         timer.Stop();
+        result = tmpf;
         return timer.Elapsed.TotalSeconds;
     }
 
