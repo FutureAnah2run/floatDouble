@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FloatDoublTester : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class FloatDoublTester : MonoBehaviour
     private ResultIndicator divide;
     [SerializeField]
     private int iterCount = 1000000;
+    [SerializeField]
+    private Text platorm;
 
     private Stopwatch timer = new Stopwatch();
 
@@ -179,8 +182,17 @@ public class FloatDoublTester : MonoBehaviour
         StartTest();
     }
 
+    public void SetPlatformText()
+    {
+        if(platorm)
+        {
+            platorm.text = Application.platform.ToString();
+        }
+    }
+
     public void Start()
     {
         InitUI();
+        SetPlatformText();
     }
 }
