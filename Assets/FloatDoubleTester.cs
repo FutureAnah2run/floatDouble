@@ -103,14 +103,14 @@ public class FloatDoubleTester : MonoBehaviour
     public float FloatOperation(float a, float b)
     {
         float result = 0f;
-        result = a * b;
+        result = a * b * b * b * b * b * b* b;
         return result;
     }
     [BurstCompile(FloatPrecision.High, FloatMode.Default, CompileSynchronously = true)]
     public float FloatPreciseOperation(float a, float b)
     {
         double result = 0d;
-        result = (double)a * b;
+        result = (double)a * b * b * b * b * b * b * b;
         return (float)result;
     }
     [BurstCompile(FloatPrecision.High, FloatMode.Default, CompileSynchronously = true)]
