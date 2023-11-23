@@ -890,7 +890,7 @@ MonoBehaviour:
   minus: {fileID: 906920217}
   multiply: {fileID: 942513998}
   divide: {fileID: 1942169816}
-  iterCount: 500000000
+  iterCount: 10000
   platorm: {fileID: 1672348822}
 --- !u!4 &979786767
 Transform:

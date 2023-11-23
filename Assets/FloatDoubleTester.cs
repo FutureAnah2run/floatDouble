@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.Burst;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -98,28 +99,28 @@ public class FloatDoubleTester : MonoBehaviour
     }
 
     const int iterCount = 10000;
-
+    [BurstCompile(FloatPrecision.High, FloatMode.Default, CompileSynchronously = true)]
     public float FloatOperation(float a, float b)
     {
         float result = 0f;
-        result = a * b * b * a * b;
+        result = a * b;
         return result;
     }
-
+    [BurstCompile(FloatPrecision.High, FloatMode.Default, CompileSynchronously = true)]
     public float FloatPreciseOperation(float a, float b)
     {
         double result = 0d;
-        result = (double)a * b * b * a * b;
+        result = (double)a * b;
         return (float)result;
     }
-
+    [BurstCompile(FloatPrecision.High, FloatMode.Default, CompileSynchronously = true)]
     public double DoubleOperation(float a, float b) 
     {
         double result = a;
         result += b;
         return result;
     }
-
+    [BurstCompile(FloatPrecision.High, FloatMode.Default, CompileSynchronously = true)]
     public double DoublePreciseOperation(float a, float b)
     {
         double result = a + b;
