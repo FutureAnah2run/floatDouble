@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,10 @@ public class FloatDoublTester : MonoBehaviour
     private ResultIndicator multiply;
     [SerializeField]
     private ResultIndicator divide;
+    [SerializeField]
+    private ResultIndicator f2d;
+    [SerializeField]
+    private ResultIndicator d2f;
     [SerializeField]
     private int iterCount = 1000000;
     [SerializeField]
@@ -165,17 +170,54 @@ public class FloatDoublTester : MonoBehaviour
         return timer.Elapsed.TotalSeconds;
     }
 
+    public double FloatToDouble()
+    {
+        timer.Reset();
+        timer.Start();
+
+        float tmpf = Mathf.PI;
+        for (int i = 0; i < iterCount; ++i)
+        {
+            result = (double)tmpf;
+        }
+
+        timer.Stop();
+        return timer.Elapsed.TotalSeconds;
+
+    }
+
+    public double DoubleToFloat()
+    {
+        timer.Reset();
+        timer.Start();
+
+        double tmpf = Mathf.PI;
+        float total = 0;
+        for (int i = 0; i < iterCount; ++i)
+        {
+            total = (float)tmpf;
+        }
+
+        result = total;
+        timer.Stop();
+        return timer.Elapsed.TotalSeconds;
+    }
+
     public void InitUI()
     {
         plus.ClearResult();
         minus.ClearResult();
         multiply.ClearResult();
         divide.ClearResult();
+        f2d.ClearResult();
+        d2f.ClearResult();
 
         plus.SetFieldText("A+B");
         minus.SetFieldText("A-B");
         multiply.SetFieldText("A*B");
         divide.SetFieldText("A/B");
+        f2d.SetFieldText("f2d");
+        d2f.SetFieldText("d2f");
     }
 
     public void StartTest()
@@ -184,6 +226,8 @@ public class FloatDoublTester : MonoBehaviour
         minus.SetResult(FloatMinus(), DoubleMinus());
         multiply.SetResult(FloatMultiply(), DoubleMultiply());
         divide.SetResult(FloatDivide(), DoubleDivide());
+        f2d.SetResult(FloatToDouble(), 0);
+        d2f.SetResult(DoubleToFloat(), 0);
     }
 
     public void OnClickTestButton()
